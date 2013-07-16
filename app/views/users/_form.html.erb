@@ -1,0 +1,13 @@
+<% action_path = method == :post ? users_url : user_url(user.id) %>
+
+<form action="<%= action_path %>" method="post">
+  <label for="username">Username</label>
+  <input type="text" name="user[username]" value="<%= user.username %>" id="username">
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" id="password">
+  <input type="submit" value="Sign Up">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% unless method==:post %>
+    <input type="hidden" name="_method" value="<%= method %>">
+  <% end %>
+</form>
