@@ -1,6 +1,9 @@
 class Gang < ActiveRecord::Base
-  attr_accessible :member_id, :user_id, :name
+  attr_accessible :bio, :user_id, :name, :member_ids
 
-  belongs_to :user
-  belongs_to :member, class_name: "User"
+  belongs_to :owner, :foreign_key => :user_id, :class_name => "User"
+  has_many :gang_memberships, :foreign_key => :gang_id
+  has_many :members, :through => :gang_memberships, :source => :user
+
+
 end

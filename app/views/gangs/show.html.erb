@@ -1,0 +1,10 @@
+<h1>About <%= @gang.owner.username %>'s gang: <%= @gang.name %></h1>
+<p><%= @gang.bio %></p>
+
+
+<h2>Members in <%= @gang.name %></h2>
+<ul>
+<% @gang.members.each do |member| %>
+  <li><%= member.username %></li>
+<% end %>
+</ul>

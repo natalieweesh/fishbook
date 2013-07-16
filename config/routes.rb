@@ -2,7 +2,9 @@ Fishbook::Application.routes.draw do
 
   resources :users, :except => [:delete]
   resource :session, :only => [:create, :new, :destroy]
-  resources :gangs, :except => [:delete]
+  resources :gangs, :except => [:delete] do
+    resources :gang_memberships, :only => [:create, :new, :destroy]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

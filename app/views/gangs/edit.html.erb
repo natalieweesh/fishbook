@@ -1,0 +1,27 @@
+<h2>Edit Gang Info for <%= @gang = Gang.find(params[:id]) %></h2>
+
+<%= render :partial => "form", :locals => { :method => :put, :gang => @gang } %>
+
+<h2>Or, Recruit Someone to <%= @gang.name %></h2>
+
+<form action="<%= gang_url(@gang.id) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% User.all.each do |user| %>
+
+    <% html_id = "gang_membership_ids_#{user.id}" %>
+
+    <input
+      type="checkbox"
+      name="gang_membership[user_ids][]"
+      value="<%= user.id %>"
+      id="<%= html_id %>"
+      <%= 'checked="checked"' if @gang.member_ids.include?(user.id) %>>
+    <label for="<%= html_id %>">
+      <%= user.username %>
+    </label>
+
+
+  <% end %>
+  <input type="submit" value="Recruit Gang Members">
+</form>

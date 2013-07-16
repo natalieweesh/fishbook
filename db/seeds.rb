@@ -15,10 +15,17 @@ name.each do |name|
   )
 end
 
-(name.length - 1).times do |index|
+1.times do
   Gang.create(
-    member_id: (index + 2),
     user_id: 1,
-    name: "Swimmies"
+    name: "Swimmies",
+    bio: "No one swims faster than us."
+  )
+end
+
+(name.length - 1).times do |index|
+  GangMembership.create(
+    user_id: (index + 2),
+    gang_id: 1
   )
 end
