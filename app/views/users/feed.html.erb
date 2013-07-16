@@ -1,0 +1,21 @@
+<h1>Here is your feed™, <%= @user.username %></h1>
+
+<ul>
+<% @user.gangs.each do |gang| %>
+  <ul>
+  <% gang.posts.each do |post|  %>
+    <li><%= post.title %></li>
+    <ul>
+      <li><%= post.user.username %></li>
+      <li><%= post.body %></li>
+      <ul>
+        <% post.links.each do |link| %>
+        <li><%= link.content %></li>
+        <% end %>
+      </ul>
+    </ul>
+  <% end %>
+  </ul>
+<% end %>
+</ul>
+

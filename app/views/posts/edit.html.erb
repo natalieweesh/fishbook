@@ -1,0 +1,5 @@
+<h2>Edit Post Info for <%= @post.title %></h2>
+
+
+<%= render :partial => "form", :locals => { :method => :put, :post => @post } %>
+

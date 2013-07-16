@@ -1,0 +1,55 @@
+<% action_path = method == :post ? posts_url : post_url(post.id) %>
+
+<form action="<%= action_path %>" method="post">
+  <label for="post_title">Post Title</label>
+  <input type="text" name="post[title]" value="<%= post.title %>" id="post_title">
+
+  <label for="body">Post Content</label>
+  <input type="text" name="post[body]" value="<%= post.body %>" id="body">
+
+
+  <h1>Add some Links to your post</h1>
+
+  <% post.links.each_with_index do |link, i| %>
+    <label for="<%= "post_links_attributes_#{i}_content" %>">New Link</label>
+    <input type="text"
+      name="<%= "post[links_attributes][#{i}][content]" %>"
+      id="<%= "post_links_attributes_#{i}_content" %>"
+      value="<%= link.content %>">
+
+    <% if link.persisted? %>
+      <input type="hidden"
+        name="<%= "post[links_attributes][#{i}][id]" %>"
+        value="<%= link.id %>">
+    <% end %>
+
+  <% end %>
+
+
+  <h2>Which gangs do you want to post this to?</h2>
+  <% post.user.gangs.each do |gang| %>
+
+    <% html_id = "gang_ids_#{gang.id}" %>
+
+    <input
+      type="checkbox"
+      name="gang_post[post_ids][]"
+      value="<%= gang.id %>"
+      id="<%= html_id %>"
+      <%= 'checked="checked"' if @post.gang_ids.include?(gang.id) %>>
+    <label for="<%= html_id %>">
+      <%= gang.name %>
+    </label>
+
+  <% end %>
+
+
+  <% unless method==:post %>
+    <input type="hidden" name="_method" value="<%= method %>">
+  <% end %>
+
+  <input type="hidden" name="authenticity_token"
+                       value="<%= form_authenticity_token %>">
+
+  <input type="submit" value="Submit Post">
+</form>

@@ -27,4 +27,8 @@ class UsersController < ApplicationController
     user.destroy
     redirect_to new_user_url
   end
+
+  # def feed
+  #   render :feed
+  # end
 end

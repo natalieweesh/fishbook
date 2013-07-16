@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 name = %w{Saul Tony Pauli Bruiser Laser Michael}
+gangs = ["Swimmies", "Sewer Lerkers", "Water Snakes", "Razor Fins"]
 
 name.each do |name|
   User.create(
@@ -15,10 +16,10 @@ name.each do |name|
   )
 end
 
-1.times do
+gangs.each do |name|
   Gang.create(
     user_id: 1,
-    name: "Swimmies",
+    name: name,
     bio: "No one swims faster than us."
   )
 end
@@ -29,3 +30,29 @@ end
     gang_id: 1
   )
 end
+
+
+####### POSTS LINKS
+websites = name.map{ |e| "www.#{e}iscool.com"}
+
+websites.each do |name|
+  Link.create(
+    content: name
+  )
+end
+
+1.times do
+  Post.create(
+    user_id: 1,
+    body: "My fellow Swimmies, check this out."
+  )
+end
+
+3.times do |index|
+  PostLink.create(
+    link_id: (index + 1),
+    post_id: 1
+  )
+end
+
+GangPost.create(post_id: 1, gang_id: 1)

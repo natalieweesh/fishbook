@@ -1,4 +1,5 @@
 class GangsController < ApplicationController
+  before_filter :check_login
 
   def show
     @gang = Gang.find(params[:id])

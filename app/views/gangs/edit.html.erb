@@ -7,6 +7,7 @@
 <form action="<%= gang_url(@gang.id) %>" method="post">
   <input type="hidden" name="_method" value="put">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="gang_membership[user_ids][]" value="">
   <% User.all.each do |user| %>
 
     <% html_id = "gang_membership_ids_#{user.id}" %>

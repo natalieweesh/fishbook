@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  gang_id: 1
+  post_id: 1
+
+two:
+  gang_id: 1
+  post_id: 1

@@ -1,16 +1,27 @@
 Fishbook::Application.routes.draw do
 
-  resources :users, :except => [:delete]
+  resources :users
+  #resources :gang_posts, :only => [:create, :destroy]
+
   resource :session, :only => [:create, :new, :destroy]
-  resources :gangs, :except => [:delete] do
-    resources :gang_memberships, :only => [:create, :new, :destroy]
+  resources :gangs do
+    resources :gang_memberships, :only => [:create, :destroy]
   end
+
+  resources :posts do
+    resources :links, :only => [:create, :destroy]
+  end
+
+  # resources :links, :only => [:destroy]
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+
+  match '/feed' => 'users#feed'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

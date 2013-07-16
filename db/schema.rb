@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716154546) do
+ActiveRecord::Schema.define(:version => 20130716185628) do
 
   create_table "gang_memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "gang_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "gang_posts", :force => true do |t|
+    t.integer  "gang_id"
+    t.integer  "post_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -26,6 +33,27 @@ ActiveRecord::Schema.define(:version => 20130716154546) do
     t.datetime "updated_at", :null => false
     t.string   "name"
     t.text     "bio"
+  end
+
+  create_table "links", :force => true do |t|
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "post_links", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "link_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   create_table "users", :force => true do |t|
